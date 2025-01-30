@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tu estado de cuenta</title>
+
+        <style>
+            *{
+                box-sizing: border-box;                
+            }
+            @page {
+                size: a4 portrait;
+                margin: 10px;
+            }
+            
+            body {
+                color: black;
+                background-color: white;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                width: 96%;
+                padding-left: 2px;
+                padding-right: 2px;
+                font-family: Arial, Helvetica, sans-serif;
+                
+
+            }
+            .content{
+                display: flex;
+                margin: auto;
+                max-width: 900px;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            .heading {
+                background-color: #e93926;
+                color: white;
+                font-weight: bold;
+                text-align: center;
+                text-transform: uppercase;
+                padding-top: 8px;
+                padding-bottom:4px;
+            }
+            .yellow-heading {
+                background-color: #f9ec11;
+                color: black;
+                font-weight: bold;
+                text-align: center;
+                text-transform: uppercase;
+                padding-top: 5px;
+                padding-bottom:2px;
+                margin-bottom: 4px;
+            }
+            .header{
+                background-image: url('https://testingsite.com.ar/wp-content/uploads/2025/01/header-background.png') ;
+
+                position: relative;
+                height: 220px;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-items: center;
+                gap: 12px;
+                
+            }
+            .header-title{
+                position: relative;
+                width: 100%;
+                height: 40px;
+                text-transform: uppercase;
+                padding:0px;  
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 16px;
+            }
+            .header-words{
+                position: relative;
+                z-index: 12;
+                color: white;
+                font-size: 15px;
+                font-weight: bolder;
+            }
+            .background{            
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                z-index: 1;
+                 background-color: #e93926;
+                 mix-blend-mode: multiply;  
+            }
+            
+           
+            
+            .header > p {
+                position: absolute;
+                bottom:30px;
+                text-align: center;
+                font-size: 12px;
+            }
+            table,
+            th,
+            td {
+                font-size: 12px;
+                border: 1px solid #e93926;
+                border-collapse: collapse;
+            }
+            th,
+            td {
+                padding: 4px;
+            }
+            div.box-container {
+                width: 100%;
+                display: flex;
+                gap: 2%;
+                margin-top: -20px;
+                z-index: 10;
+                align-items: center;
+                justify-content: center;
+            }
+            table.box {
+                border: 1px solid #231f20;
+                background-color: white;
+                color: black;
+                margin-bottom: 8px;
+
+            }
+            table.left {
+                min-width: 46%;
+                height: 130px;
+                border-spacing: 10px 0px;
+            }
+            table.right {
+             
+                height: 130px;
+                min-width: 46%;
+                border-collapse: separate;
+                border-spacing: 12px 0px;
+                padding: 20px 10px 10px 10px;
+            }
+
+            th.box-data {
+                padding-top: 4px;
+                padding-bottom: 0px;
+                padding-left: 4px;
+                text-align: left;
+                font-size: 12px;
+                border: none;
+                border-right: 1px solid;
+            }
+            th.box-data-red-title {
+                max-width: 100px;
+                padding-top: 6px;
+                padding-bottom: 6px;
+                padding-left: 8px;
+                text-align: left;
+                font-size: 12px;
+                border: none;
+                background-color: #e93926;
+                color: white;
+                
+            }
+            td.box-data {
+                padding-left: 4px;
+                padding-right: 4px;
+                padding-top: 0px;
+                border: none;
+                border-right: 1px solid;
+                font-size: 12px;
+            }
+            td.box-data-detail {
+                padding-left: 4px;
+                padding-right: 4px;
+                padding-top: 4px;
+                border: none;
+                font-size: 12px;
+            }
+            td.box-dni {
+                padding-left: 4px;
+                padding-right: 4px;
+                padding-top: 0px;
+                border: none;
+                font-size: 12px;
+            }
+            .services-section{
+                width: 94%;
+                margin-bottom: 12px;
+            }
+            .heading{
+                margin-bottom: 6px;
+            }
+            .next-payments-section{
+                width: 94%;
+                margin-block: 6px;
+            }
+            table.next-payments-table{
+                width: 100%;
+                border: 1px solid #e93926;                
+
+            }
+            .next-payments-table > thead > tr{
+                padding-block: 0px;
+            }
+            table.next-payments-table > thead > tr  > th {
+                padding-block: 0px;
+                padding-inline: 8px;
+                line-height: 0;
+            }
+            table.next-payments-table td{
+               padding-block:8px;
+               padding-inline: 8px;
+            } 
+            table.services-table{
+                width:100%;
+            }
+            p.legal{
+                font-size: 9px;
+            }
+            .total-payments{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #e93926;
+                color: white;
+                font-size: 12px;
+                padding-block: 02px;
+                line-height: 0;
+            }
+
+            .no-border{
+                border: none;
+            }
+            .red-text{
+                color: #e93926;
+            }
+            .left-align{
+                text-align: left;
+            }
+            .red-border{
+                border: 1px solid #e93926;
+            }
+            .low-block-padding{
+                padding-block:8px ;
+            }
+            .expired-payments-section{
+                width: 94%;
+                background-color:#f9ec11;
+                color: #231f20;
+                padding: 8px;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+                break-inside: avoid;
+                font-size: 15px;
+                line-height: 16px;
+            }
+            .expired-payments-section strong{
+                font-size: 18px;
+                line-height: 26px;
+
+            }
+            .social-cuota-section{
+                width: 94%;
+                margin-block: 6px;
+            }
+            .other-services-section{
+                width: 94%;
+                margin-block: 6px;
+                break-inside: avoid;
+            }
+            .unmanaged-credit-section{
+                width: 94%;
+                margin-block: 6px;
+                break-inside: avoid;
+            }
+            .managed-credit-section{
+                width: 94%;
+                margin-block: 6px;
+                break-inside: avoid;
+            }
+            table.social-cuota{
+                width: 100%;
+            }
+            .grey-text{
+                color: #231f20;
+            }
+            .grey-border > *{
+                border: 1px solid #6f7173;
+            }
+            
+            .grey-background{
+                background-color: #6f7173;
+                color: white;
+            }
+            .small-margin{
+                margin-top: 24px;
+            }
+            .details{
+                width: 94%;
+                line-height: 1.5rem;                
+                padding-bottom: 12px;
+                font-size: 12px;
+            }            
+            .details > h3{
+                margin: 0;                
+                font-size:14px;
+
+            }
+            .details > ul{
+                display: block;
+                font-size: 12px;
+                margin-left: -16px;
+                text-align: justify;
+            }
+            .payment-options{  
+                width: 94%;
+                background:url('https://testingsite.com.ar/wp-content/uploads/2025/01/amtae-payment@2x-copy.png');
+                background-repeat: no-repeat;
+                background-size: cover;
+
+                padding: 8px;
+                margin-top: 12px;
+                margin-bottom: 8px;
+                break-inside: avoid;
+                
+            }
+            .payment-heading{
+                font-size: 18px;
+                font-weight: bold;
+                padding: 6px;
+                text-align: center;
+                color: #231f20;
+                margin-bottom: 8px;
+
+            }
+            .payment-container{
+                display: flex;               
+                gap:4%;
+                flex-wrap: wrap;
+                justify-content: center;
+                font-size: 12px;
+                padding-inline: 16px;
+
+            }
+            .flex-column-container{
+                display: flex;
+                flex-direction: column;
+
+            }
+            .payment-left{
+                width: 44%;
+            }
+            .payment-right{
+                width: 52%;
+            }
+            .white-background{
+                background-color: rgba(255, 255, 255, 0.70);
+            }
+            .white-background > img {
+                align-self: center;
+            }
+            .filial{
+                position: relative;
+                display: flex;
+                margin-bottom: 8px;
+                align-items: center;
+                padding-left: 12px;
+                padding-block: 0px;
+                gap: 12px;
+
+            }
+            .filial > img{
+                width: 50px;
+            }
+            .rapipago{
+                display:flex;
+                flex-direction:column;
+                padding-inline: 10px;
+                padding-block: 4px;
+                margin-top: 16px;
+                margin-bottom: 20px;
+            }
+            .rapipago > img{
+                width: 90px;
+                align-self: flex-start;
+                margin-bottom: -10px;
+            }
+            .pago-mis-cuentas{
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+                padding-block: 10px;
+                padding-inline: 10px;
+                margin-bottom: 8px;
+            }
+            .pago-mis-cuentas > img {
+                align-self: flex-start;
+                max-width: 140px;
+                margin-bottom: -8px;
+            }
+            .transferencia{
+                display: flex;
+                padding-left: 8px;
+                gap: 12px;
+                margin-bottom: 8px;
+            }
+            .transferencia > img{
+                margin-left: -18px;
+                width: 50px;
+            }
+            .transferencia > p{
+                line-height: 14px
+            }
+            .mercadopago{
+                display: flex;
+                flex-direction: column;
+                padding-left: 8px;
+                margin-bottom: 8px;
+            }
+            .mercadopago > img{
+                max-width: 100px;
+                align-self: flex-start;
+                margin-top: 10px;
+                margin-bottom: -6px;
+
+            }
+            .mercadopago > p{
+                line-height: 14px;
+            }
+            .comprobante{
+                width: 100%;
+                text-align: center;
+                align-items: center;
+                padding: 4px;
+            }
+            .contact-section{
+                width: 94%;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+            }
+            .doubts{
+                margin: 0;
+
+                color: #231f20;
+                font-size: 14px;
+            }
+            .atention > p{
+                margin:0;
+                margin-top: 8px;
+                font-size: 14px;
+            }
+            .call > h2{
+                margin: 0;
+                font-size: 28px;
+            }
+            .uppercase{
+                text-transform: uppercase;
+            }
+            .socials{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                font-size: 14px;
+            }
+            .link-amtae{
+                text-decoration: none;
+                color: #231f20;
+                font-size: 14px;
+            }
+            .social-logo{
+                width: 24px;
+            }
+            .bold{
+                font-weight: bold;
+            }
+            .centered{
+                text-align: center;
+            }
+            .expand-link{
+                text-decoration: none;
+            }
+            .expand-section{
+                position: relative;
+                margin-top: 8px;
+                display: flex;
+                gap: 10px;
+                justify-content: center;
+                align-items: center;
+                height: 40px;
+
+            }
+            .red-background{
+                background-color:#e93926;
+                width: 100%;
+                position: absolute;
+                top: 0px;
+                height:40px;
+                border-radius: 10px;
+                color: white;
+            }
+            .expand-section > img{
+                margin-top: 8px;
+                z-index: 10;
+                max-width: 48px;
+            }
+            .expand-section > h3{
+                color: white;
+                z-index: 10;
+                display: block;
+
+            }
+        
+            .red-titles{
+                border-top: 2px solid #e93926;
+                color: #e93926;
+                padding: 0px;
+
+            }
+            .red-titles > th{
+                padding-block: 0px;
+                font-size: 12px;
+                line-height: 12px;
+    
+            }
+            th{
+
+            }
+            .managed-credit-table{
+                width: 100%;
+                margin-bottom: 16px;
+                border-top: 2px solid #6f7173;
+                border-bottom: 2px solid #6f7173;
+                border-spacing: 10px 200px;
+
+            }
+            .managed-credit-table thead{
+                background-color: whitesmoke;
+            }
+            .managed-credit-table th, .managed-credit-table td {
+                width: 100px;
+                max-width: 100px;
+                height: 22px;
+                padding-inline: 8px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow:ellipsis;
+                text-align: left;
+                line-height: 0px;                
+            }
+            .managed-credit-table td{
+               height: 30px;
+             
+            }
+        </style>
+
+    </head>
+    <body id="content">
+        <div class="content">
+            <div class="header">
+                <div class="header-title">
+                    <p class="header-words">Estado de cuenta</p>
+                    <div class="background"></div>
+                </div>
+               <div class="logo-container">
+                <img src="https://testingsite.com.ar/wp-content/uploads/2025/01/logo-amtae.png" alt="" width="160px">
+               </div>                
+                <p>Asociación Mutual de Trabajadores Argentinos Estatales. Matrícula INAES 745 C.F.<br>Lavalle 3155 CP1190AA | C.A.B.A - 0810-222-6823</p>
+            </div>
+            <div class="box-container">
+                <table class="box left">
+                    <tr>
+                        <th colspan="3" class="box-data">{{socio.socio.Nombre}}</th>
+                        
+                    </tr>
+                    <tr class="box-head">
+                        <td class="box-dni">
+                            {{socio.socio.TipoDoc}} {{socio.socio.NroDoc}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="" class="box-data">Plan Socio</th>
+                        <th colspan="" class="box-data">ID Asociado</th>
+                        <th colspan="" class="box-data">Importe Cuota</th>
+                    </tr>
+                    <tr>
+                        <td colspan="" class="box-data">
+                            {{socio.socio.Plan_Socio}}
+                        </td>
+                        <td colspan="" class="box-data">
+                            {{socio.socio.Id_Asociado}}
+                        </td>
+                        <td colspan="" class="box-data">${{format servicios.0.Importe_CS_Base}}</td>
+                    </tr>
+                    <tr>
+                        <th colspan="" class="box-data">Fecha Alta</th>
+                        <th colspan="" class="box-data">Fecha Reingreso</th>
+                        <th colspan="" class="box-data">Fecha Baja</th>
+                    </tr>
+                    <tr>
+                        <td colspan="" class="box-data">
+                            {{#if socio.socio.Fecha_Alta}}{{formatDate
+                            socio.socio.Fecha_Alta}}{{/if}}
+                        </td>
+                        <td colspan="" class="box-data">
+                            {{#if socio.socio.Fecha_Reingreso}} {{formatDate
+                            socio.socio.Fecha_Reingreso}} {{/if}}
+                        </td>
+                        <td colspan="" class="box-data">
+                            {{#if socio.socio.Fecha_Baja}} {{formatDate
+                            socio.socio.Fecha_Baja}} {{/if}}
+                        </td>
+                    </tr>
+                </table>
+                <table class="box right">
+                    <tr>
+                        <th colspan="" class="box-data-red-title">Total a pagar</th>
+                        <th colspan="" class="box-data-red-title">
+                            Código de Rapipago
+                        </th>
+                    </tr>
+                    <tr>
+                        <td colspan="" class="box-data-detail">
+                            ${{format (sumarSaldos saldosTotales)}}
+                        </td>
+                        <td colspan="" class="box-data-detail">
+                            {{socio.socio.NroDoc}}{{socio.socio.Digito_Verificador}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="" class="box-data-red-title">Medio de pago</th>
+                        <th colspan="" class="box-data-red-title">Vencimiento</th>
+                    </tr>
+                    <tr>
+                        <td colspan="" class="box-data-detail">
+                            {{servicios.0.MC}}
+                        </td>
+                        <td colspan="" class="box-data-detail">
+                            {{today}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="services-section">
+                <div class="heading">Deuda servicios</div>
+                <table class="services-table centered no-sides">
+                    <thead>
+                        <tr class="no-sides red-titles">
+                            <th >
+                                <p>Servicio</p>
+                            </th>
+                            <th >
+                                <p>Tipo</p>
+                            </th >
+                            <th >
+                                <p>Adherente</p>
+                            </th>
+                            <th >
+                                <p>Fecha Vencimiento</p>
+                            </th>
+                            <th >
+                                <p>Fecha Cobro</p>
+                            </th>
+                            <th >
+                                <p>Mes Servicio</p>
+                            </th>
+                            <th >
+                                <p>Importe Cuota</p>
+                            </th>
+                            <th >
+                                <p>Importe Cobrado</p>
+                            </th>
+                            <th >
+                                <p>Saldo</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    {{#each (groupBy serviciosRepositorio 'TipoCS') as
+                    |category| }}
+
+                    <tr class="no-sides">
+                        <td rowspan="{{renderMin category.length 6}}">
+                            {{category.0.TipoServicio}}
+                        </td>
+                        <td rowspan="{{renderMin category.length 6}}">{{category.0.TipoCS}}</td>
+
+                        <td rowspan="{{renderMin category.length 6}}">
+                            {{category.0.Adherente}}
+                        </td>
+                        {{#each category as |row|}}
+                        
+                        {{#if (compare @index '<' 6)}}
+
+                        <td rowspan="">{{formatDate row.FechaVto}}</td>
+                        <td rowspan="">{{formatDate row.FechaCobro}}</td>
+                        <td rowspan="">{{row.Mes_Servicio}}</td>
+                        <td rowspan="">${{format row.Importe}}</td>
+                        <td rowspan="">${{format row.CobImporte}}</td>
+                        <td rowspan="" class="no-sides">${{format row.Saldo}}</td>
+                        {{/if}}
+                    </tr>
+
+                    {{/each}} {{/each}}
+                   
+                </table>
+                <a href="/{{socio.socio.Id_Cliente}}/ampliar" class="expand-link">
+                <div class="expand-section">
+                    <img src="https://testingsite.com.ar/wp-content/uploads/2025/01/lupa@2x.png" alt="">
+                    <h3> Hacé click aquí para ver tu estado de cuenta ampliado</h3>
+                    <div class="red-background"></div>
+                    
+                </div>
+                </a>
+                {{!-- <p class="legal">* El concepto Adicional Plan Cuota Social corresponde a la diferencia para llegar al valor total de la cuota social. Se cobra por débito en su cuenta.</p> --}}
+            </div>
+            <div class="expired-payments-section">
+                    <p><strong>Tu saldo vencido es de ${{format (sumarSaldos saldosTotales)}} y vence el {{today}}</strong><br>Recordá que podría haber importes en proceso de cobro, correspondientes<br> al vencimiento del período en curso.</p>
+                </div>
+            <div class="next-payments-section">
+                <div class="heading">próximos vencimientos</div>
+                <table class="next-payments-table">
+                    <thead>
+                        <tr>
+                            <th class="no-border red-text left-align low-block-padding">
+                                <p>Cuota Social Titular</p>
+                            </th>
+                            <th class="no-border red-text left-align low-block-padding">
+                                <p>Cuota Social Adherente</p>
+                            </th>
+                            <th class="no-border red-text left-align low-block-padding">
+                                <p>Servicios</p>
+                            </th>
+                            <th class="no-border red-text left-align low-block-padding">
+                                <p>Créditos</p>
+                            </th>
+                            <th class="no-border red-text left-align low-block-padding">
+                                <p>Total próximos vencimientos</p>
+                            </th>
+                           
+                        </tr>
+                           
+                    </thead>
+                     {{#if (compare saldosAVencer.length '>' 0)}}
+                                <tr class="red-border">
+                            {{#each saldosAVencer as |cliente|}}
+                                    <td class="no-border">
+                                        ${{format cliente.SaldoCSTitular}}
+                                    </td>
+                                    <td class="no-border">
+                                        ${{format cliente.SaldoCSAdherente}}
+                                    </td>
+                                    <td class="no-border">
+                                        ${{format cliente.SaldoServicios}}
+                                    </td>
+                                    <td class="no-border">
+                                        ${{format cliente.SaldoCreditos}}
+                                    </td>
+                                    <td class="no-border red-text bold">
+                                        ${{format (sumarSaldos ../saldosAVencer)}}
+                                    </td>
+                                    
+                            {{/each}}
+                                </tr>
+                    {{/if}}
+                            {{#if (compare saldosAVencer.length '==' 0)}}
+                                 <tr class="red-border">
+                                    <td class="no-border">
+                                        0
+                                    </td>
+                                    <td class="no-border">
+                                        0
+                                    </td>
+                                    <td class="no-border">
+                                        0
+                                    </td>
+                                    <td class="no-border">
+                                        0
+                                    </td>
+                                    <td class=" no-border red-text">
+                                        0
+                                    </td>
+                                </tr>
+                            {{/if}}
+                </table>
+                <div class="total-payments centered">
+                    {{!-- <h3>Total próximos vencimientos ${{sumarSaldos saldosAVencer}}</h3> --}}
+                    <p>El importe de las cuotas a vencer puede sufrir modificaciones</p>
+                </div>
+                
+
+            </div>
+            {{#if (compare servicios.length '>' 1) }}
+            <div class="social-cuota-section">
+                <div class="yellow-heading grey-background">Cuota social adherente</div>
+                <table class="social-cuota grey-text centered no-sides">
+                    <thead>
+                        <tr class="grey-border no-sides">
+                            <th>Apellido y Nombre</th>
+                      
+                            <th>Nro Doc</th>
+                      
+                            <th>Parentesco</th>
+                      
+                            <th>Fecha de Alta</th>
+                      
+                            <th>Importe</th>
+                        
+                            {{!-- <th>Fecha de Baja</th> --}}
+                        
+                            <th>Medio de Pago</th>
+                        </tr>
+                    </thead>
+                    {{#each servicios as |adherente|}}
+                      {{#if @first}}
+                      {{else}}
+                      
+                            <tr class="grey-border no-sides">
+                                <td>{{adherente.Nombre}}</td>
+                                <td>{{adherente.NroDoc}}</td>
+                                <td>{{adherente.Parentesco}}</td>
+                                <td>{{formatDate adherente.Fecha_Alta}}</td>
+                                <td>${{format adherente.Importe}}</td>
+                                {{!-- <td>{{formatDate adherente.Fecha_Baja}}</td> --}}
+                                <td>{{adherente.MC}}</td>
+                            </tr>
+                     {{/if}}
+                    {{/each}}
+                </table>
+            </div>
+            {{/if}}
+            {{#if (compare otrosServicios.length '>' 0) }}
+            <div class="other-services-section">
+                <div class="yellow-heading grey-background">servicios</div>
+                <table class="social-cuota grey-text centered no-sides">
+                    <thead>
+                        <tr class="grey-border no-sides">
+                            <th>Servicio</th>
+                            <th>Importe</th>
+                            <th>Fecha de Alta</th>    
+                            <th>Fecha de Baja</th>
+                            <th>Medio de Pago</th>
+                        </tr>
+                    </thead>
+                    {{#each otrosServicios as |servicio|}}
+                    <tr class="grey-border no-sides">
+                        <td>{{servicio.Servicio}}</td>
+                        <td>${{format servicio.Importe}}</td>
+                        <td>{{formatDate servicio.Fecha_Alta}}</td>
+                        <td>{{formatDate servicio.Fecha_Fin}}</td>
+                        <td>{{servicio.MC}}</td>
+                    </tr>
+                    {{/each}}
+                </table>
+            </div>
+            {{/if}}
+            {{#if (compare creditosAdministrados.length '>' 0) }}
+            <div class="managed-credit-section">
+                <div class="yellow-heading grey-background">Créditos administrados</div>
+                {{#each creditosAdministrados as |credito|}}
+                <table class="managed-credit-table grey-text centered no-sides">
+                    <tr>
+                        <thead>                        
+                            <tr class="grey-border no-sides">
+                                <th>Id Crédito</th>
+                                <th>Fecha Préstamo</th>
+                                <th>Proveedor Financiero</th>    
+                                <th>Capital</th>
+                                <th>Plazo</th>
+                                <th>Valor Cuota</th>
+                            </tr>
+                        </thead>                      
+                    
+                        <tr class="grey-border no-sides">
+                            <td><span>{{credito.Id_Credito}}</span></td>
+                            <td>{{formatDate credito.Fecha_Prestamo}}</td>
+                            <td><span>{{credito.Proveedor_Financiero}}</span></td>
+                            <td>${{format credito.Capital}}</td>
+                            <td>{{credito.Plazo}}</td>
+                            <td>${{format credito.ValorCuota}}</td>
+                        </tr>
+                    </tr>
+                    <tr>    
+                        <thead>
+                            <tr class="grey-border no-sides">
+                                <th>Cuotas Pagadas</th>
+                                <th>Cuotas Impagas</th>
+                                <th>Cuotas a futuro</th>    
+                                <th>Medio de pago</th>
+                                <th>Estado</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tr class="grey-border no-sides">
+                            <td>{{credito.Cuotas_Pagadas}}</td>
+                            <td>{{credito.Cuotas_Impagas}}</td>
+                            <td>{{credito.Cuotas_A_Devengar}}</td>
+                            <td><span>{{credito.Medio_Cobro_Prestamo}}</span></td>
+                            <td>{{credito.Estado}}</td> 
+                            <td> </td>
+                        </tr>
+                    </tr>                       
+                    
+
+                </table>
+                {{/each}}
+            </div>
+            {{/if}}
+            {{#if (compare creditosNoAdministrados.length '>' 0) }}
+            <div class="unmanaged-credit-section">
+                <div class="yellow-heading grey-background">Créditos No Administrados</div>
+                <table class="social-cuota grey-text centered no-sides">
+                    <thead>
+                        
+                        <tr class="grey-border no-sides">
+
+                            <th>Fecha Préstamo</th>
+                            <th>Proveedor Financ.</th>    
+                            <th>Capital</th>
+                            <th>Plazo</th>
+                            <th>Valor Cuota</th>
+                        </tr>
+                    </thead>    
+                    {{#each creditosNoAdministrados as |credito|}}                        
+                    <tr class="grey-border no-sides">
+                        <td>{{formatDate credito.Fecha_Prestamo}}</td>
+                        <td>{{credito.Proveedor_Financiero}}</td>
+                        <td>${{format credito.Capital}}</td>
+                        <td>{{credito.Plazo}}</td>
+                        <td>${{format credito.ValorCuota}}</td>
+                    </tr>                       
+                    {{/each}}
+                </table>
+            </div>
+            {{/if}}
+            <div class="details">
+                <h3 class="centered">INFORMACIÓN ADICIONAL</h3>
+                <ul>
+                    <li>Debe contactar al proveedor financiero para cualquier información referida a operaciones de crédito con terceros.</li>
+                    <li>Recuerde que, si su medio de cobro es Débito en cuenta, los descuentos  pueden aparecer a nombre de AMTAE, Mutual 20 de Septiembre, Gestiones  F&F; Unibrica; RGM Red Global Monetaria, Cooperativa de Vivienda y  Consumo Cofincred, entre otras herramientas de cobro. Le recordamos que  todos los meses debe dejar en su cuenta los fondos suficientes para realizar  el débito.</li>
+                    <li>Si su Medio de cobro es Tarjeta de Crédito puede aparecer como AMTAE o AMTAE SERVICIOS.</li>
+                    <li> Para el pago de deuda, le detallamos a continuación cómo puede ponerse al día.</li>
+                </ul>
+            </div>
+            <div class="payment-options">
+                <div class="payment-heading">MEDIOS DE PAGO</div>
+                <div class="payment-container">
+                    <div class="flex-column-container payment-left">
+                        <div class="white-background filial">
+                            <img src="https://testingsite.com.ar/wp-content/uploads/2025/01/amtae-filial@2x.png" alt="">
+                            <p>Cualquier filial de AMTAE</p>
+                        </div>
+                        <div class="white-background rapipago">
+                            <img src="https://testingsite.com.ar/wp-content/uploads/2025/01/211201035727_rapipago-logo.png" alt="">
+                            <p>Empresa AMTAE código 1439, indicar DNI, el dígito verificador y monto a pagar.</p>
+                        </div>
+                        <div class="white-background pago-mis-cuentas">
+                            <img src="https://testingsite.com.ar/wp-content/uploads/2025/01/logo-pmc@2x.png" alt="">
+                            <p>Desde un cajero Banelco o ingresando a la página pagomiscuentas.com</p>
+                        </div>
+                    </div>
+                    <div class="flex-column-container payment-right">
+                        <div class="white-background transferencia">
+                            <img src="https://testingsite.com.ar/wp-content/uploads/2025/01/amtae-trasferencia@2x.png" alt="">
+                            <p>Transferencia o depósito bancario<br>
+                                CUENTA CORRIENTE $17998-8 005-3<br>
+                                CBU 0070005420000017998839<br>
+                                ALIAS MUNDO.AMTAE.GALICIA <br>
+                                Banco Galicia
+                            </p>
+                        </div>
+                        <div class="white-background mercadopago">
+                            <img src="https://testingsite.com.ar/wp-content/uploads/2025/01/5_logo-color-fondo-blanco-correcto@3x-15cafca6.png" alt="">
+                            <p>1.Transferir dinero<br>
+                            2. Nueva cuenta
+                            Puede transferirse a Bco Galicia<br>
+                                CBU 0070005420000017998839 <br>
+                                ó Mercado Pago CVU 0000003100073189150934<br>
+                                ALIAS SOCIO.MUNDO.AMTAE.MP<br>
+                                3. Ingresar importe a transferir
+                            </p>
+                        </div>
+                    </div>
+                    <div class="white-background comprobante">
+                        <p>Luego debe enviarnos el comprobante para la correcta imputación del pago subiendo el mismo en el siguiente link: 
+                            https://mundoamtae.com/contacto eligiendo la opción "Enviar comprobante de Pago"
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-section">
+                <div class="doubts"><p><strong>Ante cualquier consulta por favor no dude en comunicarse con nosotros</strong></p></div>
+                <div class="red-text uppercase atention"><p>Atención en todo el país</p></div>
+                <div class="red-text uppercase call"><h2>Llamá gratis al 0810-222-6823</h2></div>
+                <div><a href="https://www.mundoamtae.com" class="link-amtae"><h3>www.mundoamtae.com</h3></a></div>
+                <div class="socials">
+                    <p>Hacete fan de Mundo Amtae</p>
+                    <a href="https://www.facebook.com/mundoamtae" class="social-link"><img src="https://testingsite.com.ar/wp-content/uploads/2025/01/logo_fb@2x.png" alt="" class="social-logo"></a>
+                    <a href="https://www.instagram.com/mundoamtae/"class="social-link"><img src="https://testingsite.com.ar/wp-content/uploads/2025/01/logo_ig@2x.png" alt="" class="social-logo"></a>
+
+                </div>
+            </div>
+            
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded',()=>{
+                console.log('READY')
+            })
+        </script>
+    </body>
+</html>

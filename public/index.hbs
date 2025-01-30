@@ -1,0 +1,56 @@
+<html lang='en' id='doc'>
+    <head>
+        <meta charset='UTF-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <title>Tu estado de cuenta</title>
+    </head>
+    <style>
+        * { box-sizing: border-box; } #content { display: flex; flex-direction:
+        column; justify-content: center; align-items: center; } .header {
+        font-family: Arial, Helvetica, sans-serif; background-image:
+        url('https://testingsite.com.ar/wp-content/uploads/2025/01/header-background.png');
+        position: relative; height: 220px; width: 800px; display: flex;
+        flex-direction: column; align-items: center; justify-items: center; gap:
+        12px; padding-top: 24px; } .header-title { position: relative; width:
+        100%; height: 40px; text-transform: uppercase; padding: 0px; color:
+        white; display: flex; justify-content: center; align-items: center;
+        margin-bottom: 16px; } .header > h1 { font-family: Arial, Helvetica,
+        sans-serif; } .header-words { position: relative; z-index: 12; color:
+        white; font-size: 15px; font-weight: bolder; } #input-id-socio {
+        padding: 8px; } #btn-consulta { background-color: #e93926; padding: 8px;
+        color: white; font-weight: bold; border-radius: 4px; } label {
+        font-size: 14px; } .interface { display: flex; flex-direction: column;
+        padding: 40px; background-color: whitesmoke; gap: 8px; border: 1px solid
+        white; border-radius: 12px; } .detail { max-width: 280px; text-align:
+        justify; font-size: 16px; }
+    </style>
+    <body id='content'>
+        <div class='header'>
+            <img
+                src='https://testingsite.com.ar/wp-content/uploads/2025/01/logo-amtae.png'
+                alt=''
+                width='160px'
+            />
+            <h1>Consultar Estado de cuenta</h1>
+            <div class='interface'>
+                <p class='detail'>
+                    Para acceder al estado de cuenta resumido, ingresá aquí el
+                    número de afiliado correspondiente.
+                </p>
+                <label for='input-id-socio'>Nro. de afiliado</label>
+                <input
+                    type='number'
+                    name='input-id-socio'
+                    id='input-id-socio'
+                />
+                <button id='btn-consulta'>CONSULTAR</button>
+            </div>
+        </div>
+        <script>
+            let btn = document.getElementById('btn-consulta');
+            btn.addEventListener('click', (e) => { let input =
+            document.getElementById('input-id-socio'); let targetUrl =
+            `/${input.value}`; window.open(targetUrl); });
+        </script>
+    </body>
+</html>
